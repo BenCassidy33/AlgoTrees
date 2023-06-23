@@ -3,7 +3,7 @@
 version = 3
 
 [[package]]
-name = "algographs"
+name = "algotrees"
 version = "0.1.0"
 dependencies = [
  "num",

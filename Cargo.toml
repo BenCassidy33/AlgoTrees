@@ -1,5 +1,5 @@
 [package]
-name = "algographs"
+name = "algotrees"
 version = "0.1.0"
 edition = "2021"
 author = "Benjamin Cassidy"
@@ -10,3 +10,4 @@ license = "MIT"
 
 [dependencies]
 num = "0.4.0"
+

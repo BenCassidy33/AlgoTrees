@@ -1,5 +1,10 @@
 #![allow(dead_code)]
 
+pub mod prelude {
+    pub use super::algographs::binary_tree::actions::InsertionType;
+    pub use super::algographs::binary_tree::BinaryTree;
+}
+
 pub mod algographs {
     pub mod binary_tree {
 
@@ -40,6 +45,11 @@ pub mod algographs {
                 Empty,
             }
 
+            pub enum DeletionDirection {
+                Left,
+                Right,
+            }
+
             // dumb shit I don't understand (I mean, I kinda do):
             impl<T: Default + PartialEq> PartialEq for BinaryTree<T> {
                 fn eq(&self, other: &BinaryTree<T>) -> bool {
@@ -63,12 +73,7 @@ pub mod algographs {
                         }
                     }
                 }
-            }
 
-            impl<T: Default + PartialEq> BinaryTree<T>
-            where
-                BinaryTree<T>: PartialEq,
-            {
                 pub fn insert_right(&mut self, item: InsertionType<T>) {
                     match item {
                         InsertionType::Node(node) => self.right = Some(Box::new(node)),
@@ -80,6 +85,53 @@ pub mod algographs {
                             }))
                         }
                     }
+                }
+
+                pub fn remove(&mut self, direction: DeletionDirection) {
+                    match direction {
+                        DeletionDirection::Left => self.left = None,
+                        DeletionDirection::Right => self.right = None,
+                    }
+                }
+
+                pub fn remove_left(&mut self) {
+                    self.remove(DeletionDirection::Left);
+                }
+
+                pub fn remove_right(&mut self) {
+                    self.remove(DeletionDirection::Right);
+                }
+
+                pub fn get_left(&self) -> Option<&BinaryTree<T>> {
+                    match &self.left {
+                        Some(node) => Some(node),
+                        None => None,
+                    }
+                }
+
+                pub fn get_right(&self) -> Option<&BinaryTree<T>> {
+                    match &self.right {
+                        Some(node) => Some(node),
+                        None => None,
+                    }
+                }
+
+                pub fn get_left_val(&self) -> Option<&T> {
+                    match &self.left {
+                        Some(node) => Some(&node.head),
+                        None => None,
+                    }
+                }
+
+                pub fn get_right_val(&self) -> Option<&T> {
+                    match &self.right {
+                        Some(node) => Some(&node.head),
+                        None => None,
+                    }
+                }
+
+                pub fn get_head(&self) -> &T {
+                    &self.head
                 }
             }
         }

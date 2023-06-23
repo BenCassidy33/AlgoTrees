@@ -1,7 +1,7 @@
-#![allow(dead_code)]
-
 pub mod prelude {
-    pub use super::algographs::binary_tree::actions::InsertionType;
+    pub use super::algographs::binary_tree;
+    //pub use super::algographs::binary_tree::actions::InsertionType;
+    //pub use super::algographs::binary_tree::initialize;
     pub use super::algographs::binary_tree::BinaryTree;
 }
 
@@ -11,29 +11,27 @@ pub mod algographs {
 
         #[derive(Default, Debug)]
         pub struct BinaryTree<T> {
-            head: T,
-            left: Option<Box<BinaryTree<T>>>,
-            right: Option<Box<BinaryTree<T>>>,
+            pub head: T,
+            pub left: Option<Box<BinaryTree<T>>>,
+            pub right: Option<Box<BinaryTree<T>>>,
         }
 
-        mod initialize {
+        pub mod initialize {
             use super::BinaryTree;
 
-            impl<T: Default> BinaryTree<T> {
-                pub fn create(
-                    head: T,
-                    left: Option<Box<BinaryTree<T>>>,
-                    right: Option<Box<BinaryTree<T>>>,
-                ) -> BinaryTree<T> {
-                    BinaryTree { head, left, right }
-                }
+            pub fn create<T>(
+                head: T,
+                left: Option<Box<BinaryTree<T>>>,
+                right: Option<Box<BinaryTree<T>>>,
+            ) -> BinaryTree<T> {
+                BinaryTree { head, left, right }
+            }
 
-                pub fn create_empty() -> BinaryTree<T> {
-                    BinaryTree {
-                        head: Default::default(),
-                        left: None,
-                        right: None,
-                    }
+            pub fn create_empty<T: Default>() -> BinaryTree<T> {
+                BinaryTree {
+                    head: Default::default(),
+                    left: None,
+                    right: None,
                 }
             }
         }
@@ -134,6 +132,51 @@ pub mod algographs {
                 pub fn get_head(&self) -> &T {
                     // ;)
                     &self.head
+                }
+            }
+        }
+
+        pub mod algorithms {
+
+            use super::BinaryTree;
+
+            pub fn get_width<T>(tree: &BinaryTree<T>) -> T
+            where
+                T: std::ops::Add<Output = T>
+                    + std::ops::Sub<Output = T>
+                    + std::cmp::PartialOrd
+                    + PartialEq
+                    + Default
+                    + Copy,
+            {
+                let left = get_left(tree);
+                let right = get_right(tree);
+                if left > right {
+                    return left - right;
+                } else {
+                    return right - left;
+                }
+            }
+
+            pub fn get_left<T>(tree: &BinaryTree<T>) -> T
+            where
+                T: std::ops::Add<Output = T> + PartialEq + Default + Copy,
+            {
+                if tree.left.is_none() {
+                    return tree.head;
+                } else {
+                    return get_left(&tree.left.as_ref().unwrap());
+                }
+            }
+
+            pub fn get_right<T>(tree: &BinaryTree<T>) -> T
+            where
+                T: std::ops::Add<Output = T> + PartialEq + Default + Copy,
+            {
+                if tree.right.is_none() {
+                    return tree.head;
+                } else {
+                    return get_right(&tree.right.as_ref().unwrap());
                 }
             }
         }

@@ -132,24 +132,9 @@ pub mod algographs {
                 }
 
                 pub fn get_head(&self) -> &T {
-                    //;)
+                    // ;)
                     &self.head
                 }
-            }
-        }
-
-        pub mod search {
-            use super::BinaryTree;
-
-            enum Direction {
-                Right(i32),
-                Left(i32),
-            }
-
-            impl<T> BinaryTree<T> {
-                //TODO:
-                //pub fn directions(haystack: BinaryTree<T>, needle: T) -> Option<Vec<Direction>> {}
-                //pub fn bfs(haystack: BinaryTree<T>) -> &T {}
             }
         }
     }

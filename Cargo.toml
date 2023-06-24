@@ -1,6 +1,6 @@
 [package]
 name = "algotrees"
-version = "0.1.2"
+version = "0.1.2.1"
 edition = "2021"
 author = "Benjamin Cassidy"
 readme = "README.md"

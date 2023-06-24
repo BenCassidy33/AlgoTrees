@@ -4,8 +4,8 @@ pub mod initialize;
 pub mod types;
 
 pub mod prelude {
-    pub use crate::binary_trees::actions::*;
-    pub use crate::binary_trees::algorithms::*;
-    pub use crate::binary_trees::initialize::*;
+    pub use crate::binary_trees::actions::actions::*;
+    pub use crate::binary_trees::algorithms::algorithems::*;
+    pub use crate::binary_trees::initialize::initalize::*;
     pub use crate::binary_trees::types::*;
 }

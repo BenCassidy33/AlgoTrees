@@ -11,6 +11,7 @@ pub enum DeletionDirection {
 }
 
 // dumb shit I don't understand (I mean, I kinda do):
+/// I still don't really understand what this does
 impl<T: Default + PartialEq> PartialEq for BinaryTree<T> {
     fn eq(&self, other: &BinaryTree<T>) -> bool {
         self.head == other.head && self.left == other.left && self.right == other.right

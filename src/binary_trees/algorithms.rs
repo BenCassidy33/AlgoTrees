@@ -39,3 +39,8 @@ where
         return get_right(&tree.right.as_ref().unwrap());
     }
 }
+
+impl<T> BinaryTree<T> {
+    pub fn bfs(&self) {}
+    pub fn dfs(&self) {}
+}

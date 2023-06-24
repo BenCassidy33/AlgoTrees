@@ -5,6 +5,7 @@ edition = "2021"
 author = "Benjamin Cassidy"
 readme = "README.md"
 license = "MIT"
+description = "This is a VERY early stage project to implement a library of algorithms and data structures in Rust. It has very little features and only supports one data structure (binary trees) at the moment. Documentation will come after each portion of the project is done ie: documentation for the binary tree data structure will come once all of the algorithms and options you can use are implemented."
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 

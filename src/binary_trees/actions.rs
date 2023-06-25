@@ -11,7 +11,7 @@ pub enum DeletionDirection {
 }
 
 // dumb shit I don't understand (I mean, I kinda do):
-/// I still don't really understand what this does
+/// checks for type equality
 impl<T: Default + PartialEq> PartialEq for BinaryTree<T> {
     fn eq(&self, other: &BinaryTree<T>) -> bool {
         self.head == other.head && self.left == other.left && self.right == other.right
@@ -22,6 +22,9 @@ impl<T: Default + PartialEq> BinaryTree<T>
 where
     BinaryTree<T>: PartialEq,
 {
+    /// Inserts a value on the left side of the node. NOTE: the value must be of the same type as the tree.
+    ///
+    /// Example:
     pub fn insert_left(&mut self, item: InsertionType<T>) {
         match item {
             InsertionType::Node(node) => self.left = Some(Box::new(node)),
@@ -63,28 +66,28 @@ where
         self.remove(DeletionDirection::Right);
     }
 
-    pub fn get_left(&self) -> Option<&BinaryTree<T>> {
+    pub fn get_left_node(&self) -> Option<&BinaryTree<T>> {
         match &self.left {
             Some(node) => Some(node),
             None => None,
         }
     }
 
-    pub fn get_right(&self) -> Option<&BinaryTree<T>> {
+    pub fn get_right_node(&self) -> Option<&BinaryTree<T>> {
         match &self.right {
             Some(node) => Some(node),
             None => None,
         }
     }
 
-    pub fn get_left_val(&self) -> Option<&T> {
+    pub fn get_left_head_val(&self) -> Option<&T> {
         match &self.left {
             Some(node) => Some(&node.head),
             None => None,
         }
     }
 
-    pub fn get_right_val(&self) -> Option<&T> {
+    pub fn get_right_head_val(&self) -> Option<&T> {
         match &self.right {
             Some(node) => Some(&node.head),
             None => None,

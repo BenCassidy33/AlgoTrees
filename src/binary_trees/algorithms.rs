@@ -1,6 +1,6 @@
 use crate::binary_trees::types::BinaryTree;
 
-pub fn get_width<T>(tree: &BinaryTree<T>) -> T
+impl<T> BinaryTree<T>
 where
     T: std::ops::Add<Output = T>
         + std::ops::Sub<Output = T>
@@ -9,38 +9,29 @@ where
         + Default
         + Copy,
 {
-    let left = get_left(tree);
-    let right = get_right(tree);
-    if left > right {
-        return left - right;
-    } else {
-        return right - left;
+    pub fn width(&self) -> T {
+        let left = self.get_far_left();
+        let right = self.get_far_right();
+        if left > right {
+            return left - right;
+        } else {
+            return right - left;
+        }
     }
-}
 
-pub fn get_left<T>(tree: &BinaryTree<T>) -> T
-where
-    T: std::ops::Add<Output = T> + PartialEq + Default + Copy,
-{
-    if tree.left.is_none() {
-        return tree.head;
-    } else {
-        return get_left(&tree.left.as_ref().unwrap());
+    pub fn get_far_left(&self) -> T {
+        if self.left.is_none() {
+            return self.head;
+        } else {
+            return self.left.as_ref().unwrap().get_far_left();
+        }
     }
-}
 
-pub fn get_right<T>(tree: &BinaryTree<T>) -> T
-where
-    T: std::ops::Add<Output = T> + PartialEq + Default + Copy,
-{
-    if tree.right.is_none() {
-        return tree.head;
-    } else {
-        return get_right(&tree.right.as_ref().unwrap());
+    pub fn get_far_right(&self) -> T {
+        if self.right.is_none() {
+            return self.head;
+        } else {
+            return self.right.as_ref().unwrap().get_far_right();
+        }
     }
-}
-
-impl<T> BinaryTree<T> {
-    pub fn bfs(&self) {}
-    pub fn dfs(&self) {}
 }

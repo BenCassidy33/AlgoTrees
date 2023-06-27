@@ -34,4 +34,16 @@ where
             return self.right.as_ref().unwrap().get_far_right();
         }
     }
+
+    pub fn exists(&self, target: T) -> bool {
+        if self.head == target {
+            return true;
+        }
+
+        self.left.as_ref().map_or(false, |left| left.exists(target))
+            || self
+                .right
+                .as_ref()
+                .map_or(false, |right| right.exists(target))
+    }
 }

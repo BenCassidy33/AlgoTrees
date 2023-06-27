@@ -75,9 +75,5 @@ where
 /// ```
 
 pub fn create_empty<T: Default>() -> BinaryTree<T> {
-    BinaryTree {
-        head: Default::default(),
-        left: None,
-        right: None,
-    }
+    BinaryTree::default()
 }

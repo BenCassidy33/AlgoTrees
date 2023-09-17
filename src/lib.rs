@@ -2,3 +2,4 @@
 
 pub mod binary_trees;
 pub mod trees;
+pub mod queue;

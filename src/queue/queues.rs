@@ -1,12 +1,15 @@
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum QueueError {
     CapacityOverflow,  // attempted to add to a max capacity queue
     CapacityUnderflow, // attempted to remove from an empty queue
 }
 
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum PeekError {
     OutOfBounds,
 }
 
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum CapacityType<T>
 where
     T: std::ops::Add,
@@ -15,6 +18,7 @@ where
     Dynamic,
 }
 
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Queue<T> {
     pub data: Vec<T>,
     pub capacity: CapacityType<usize>,

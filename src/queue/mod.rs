@@ -1,1 +1,1 @@
-pub mod queue;
+pub mod queues;
